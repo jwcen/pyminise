@@ -32,7 +32,9 @@ def index():
     page_list = sort_page_list(page_list, cut)
     context = {
         "page_list": page_list[:20],
-        "keyword": keyword
+        "keyword": keyword,
+        "count": len(page_list),
+        "time": "{:.3f}".format(end-start)
     }
     return template("./data/front/searcher.html", context)
 
