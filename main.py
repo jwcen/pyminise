@@ -22,6 +22,7 @@ def index():
 @route('/search')
 def index():
     form = request.GET.decode("utf-8")
+    start = time.time()
     keyword = form.get("keyword", "")
     cut = list(jieba.cut(keyword))
     # 根据索引查询包含关键词的网页编号
@@ -30,6 +31,7 @@ def index():
     page_list = get_page_list_from_page_id_list(page_id_list)
     # 根据查询关键字和网页包含的关键字，进行相关度排序 余弦相似度
     page_list = sort_page_list(page_list, cut)
+    end = time.time()
     context = {
         "page_list": page_list[:20],
         "keyword": keyword,
