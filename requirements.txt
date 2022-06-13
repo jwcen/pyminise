@@ -1,0 +1,3 @@
+bottle==0.12.20
+jieba==0.39
+hanlp-restful==0.0.17
