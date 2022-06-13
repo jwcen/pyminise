@@ -1,7 +1,8 @@
-## pre
-数据集
-[悟空数据集wukong50k_release.csv](https://wukong-dataset.github.io/wukong-dataset/download.html)
-## 1.start
-```shell
-pip install -r requirements.txt
-```
+本次⻘训营选题为搜索引擎项⽬，详情可戳搜索引擎项⽬Github，构建了⼀个具备基础功能的搜索引擎，能够
+让⽤⼾通过图形化界⾯搜索⽂本信息，实现的具体功能有：
+- 纯⽂本信息的存储
+- 搜索纯⽂本信息 
+- ⽤⼾⾃定义关键词过滤 
+- 搜索结果按条⽬分⻚展⽰ 
+- “相关搜索”功能，给出可能的关联条⽬ 
+- 实现关联度算法，优先向⽤⼾展⽰关联度较⾼的信息
