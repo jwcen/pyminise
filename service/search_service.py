@@ -5,32 +5,12 @@ from hanlp_restful import HanLPClient
 import hanlp
 import time
 import math
+from bottle import run
+sts = hanlp.load(hanlp.pretrained.sts.STS_ELECTRA_BASE_ZH)
 
 # 搜索服务实现
 def search_fun(keyword, mask, p,related_flag=True):
-    start = time.time()
-    cut = list(jieba.cut(keyword))
-    mask_cut = list(jieba.cut(mask))
-    # 根据索引查询包含关键词的网页编号
-    page_id_list = get_page_id_list_from_key_word_cut(cut)
-    cut_page_id_list = get_page_id_list_from_key_word_cut(mask_cut)
-    # 关键词过滤
-    for re in cut_page_id_list:
-        if page_id_list.count(re) > 0:
-            page_id_list.remove(re)
-    # 根据网页编号 查询网页具体内容
-    page_list = get_page_list_from_page_id_list(page_id_list)
-    # 根据查询关键字和网页包含的关键字，进行相关度排序 余弦相似度
-    page_list = sort_page_list(page_list, keyword)
-
-    related_keyword = []
-    sts = hanlp.load(hanlp.pretrained.sts.STS_ELECTRA_BASE_ZH)
-    if related_flag:
-        # page_list 获取关键字
-        related_keyword = get_related_word(sts,page_list[:20], keyword, cut)
-
-
-#分页
+    # 分页
     status = 0  # 首页状态
 
     if p == "":
@@ -39,15 +19,30 @@ def search_fun(keyword, mask, p,related_flag=True):
         p = int(p)
         if p > 1:
             status = 1
-
+    start = time.time()
     cut = list(jieba.cut(keyword))
+    mask_cut = list(jieba.cut(mask))
     # 根据索引查询包含关键词的网页编号
-
     page_id_list = get_page_id_list_from_key_word_cut(cut)
+    cut_page_id_list = get_page_id_list_from_key_word_cut(mask_cut)
+    print(page_id_list)
+    print(cut_page_id_list)
+    # 关键词过滤
+    for re in cut_page_id_list:
+        print(page_id_list.count(re))
+        if page_id_list.count(re) > 0:
+            page_id_list.remove(re)
     # 根据网页编号 查询网页具体内容
     page_list = get_page_list_from_page_id_list(page_id_list)
     # 根据查询关键字和网页包含的关键字，进行相关度排序 余弦相似度
-    page_list = sort_page_list(page_list, cut)
+    page_list = sort_page_list(page_list, keyword)
+
+    related_keyword = []
+    # sts = hanlp.load(hanlp.pretrained.sts.STS_ELECTRA_BASE_ZH)
+    if related_flag:
+        # page_list 获取关键字
+        related_keyword = get_related_word(page_list, keyword, cut)
+
 
     total_pages = int(math.ceil(len(page_list) / 10.0))
     dic = get_page(total_pages, p)
@@ -95,28 +90,30 @@ def get_page(total, page):
     dic = range(start, end + 1)
     return dic
 
+def swap(a, b):
+    return b, a
 # 相关搜索
-def get_related_word(sts,page_list, text, cut, num=6):
+def get_related_word(page_list, text, cut, num=6):
     # HanLP = HanLPClient('https://hanlp.hankcs.com/api', auth=None, language='zh')
-
     cal = []
     cal_copy = []
     for page in page_list:
         print(page)
         words = page[1]
         for i in words.split(" "):
-            if i not in cut:
+            if i not in cut and (i, text) not in cal:
                 cal.append((i, text))
+
     # score = HanLP.semantic_textual_similarity(cal[:30])
+    global sts
     score = sts(cal)
-    for page in page_list:
-        words = page[1]
-        for i, wi in enumerate(words.split(" ")):
-            if wi not in cut:
-                cal_copy.append([score[i], wi])
-    # print(cal_copy)
-    cal_copy = sorted(cal_copy, key=lambda i: i[0], reverse=True)
-    # print(cal_copy)
+    for i, wi in enumerate(cal):
+        cal_copy.append([score[i], wi[0]])
+    for i in range(len(score)):
+        for j in range(i, len(score)):
+            if cal_copy[i][0] < cal_copy[j][0]:
+                cal_copy[i], cal_copy[j] = swap(cal_copy[i], cal_copy[j])
+
     return cal_copy[:num]
 
 
@@ -171,3 +168,4 @@ def get_page_id_list_from_key_word_cut(cut):
     res = c.execute(sql)
     res = [r[0] for r in res]
     return res
+
