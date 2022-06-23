@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>津门海小棠搜索引擎</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+
+        /*去掉bootstrap自带的input输入框半透明阴影*/
+        .form-control:focus {
+            box-shadow: none;
+        }
+        /*去除下拉菜单按钮的箭头*/
+        .dropdown-toggle::after {
+            display: none;
+        }
+        .s{
+           height: calc(1.5em + .75rem + 2px);
+           text-align:center;
+        }
+        .logo{
+            width:100%;height:100%;
+        }
+
+    </style>
+</head>
+<body style="background-color: #F7F7F7">
+<div class="container" style="max-width:100%">
+    <div class="row">
+        <div class="col-2 pt-2">
+            <iframe width="300" height="30"
+                    src="https://i.tianqi.com/?c=code&a=getcode&id=34&icon=1" frameborder="0"></iframe>
+        </div>
+        <div class="offset-8 col-2 pt-2">
+            <div class="dropdown text-right">
+                <button class="bi bi-list btn btn-light dropdown-toggle" data-toggle="dropdown" style="font-size: 1.5em"></button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">设为首页</a>
+                    <a class="dropdown-item" href="#">收录域名</a>
+                    <a class="dropdown-item" href="#">违法举报</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">分享</a>
+                    <a class="dropdown-item" href="#">服务条款</a>
+                    <a class="dropdown-item" href="#">关于我们</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-5 col-5">
+            <svg t="1654431552979"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="31928" width="200" height="200"><path d="M512 515.1744m-436.2752 0a436.2752 436.2752 0 1 0 872.5504 0 436.2752 436.2752 0 1 0-872.5504 0Z" fill="#D7D4FF" p-id="31929" data-spm-anchor-id="a313x.7781069.0.i52" class=""></path><path d="M481.792 482.7648m-288.4096 0a288.4096 288.4096 0 1 0 576.8192 0 288.4096 288.4096 0 1 0-576.8192 0Z" fill="#AD9DFF" p-id="31930"></path><path d="M196.2496 523.1616a285.5424 248.0128 0 1 0 571.0848 0 285.5424 248.0128 0 1 0-571.0848 0Z" fill="#9F89FF" p-id="31931"></path><path d="M204.9024 563.6096a276.8896 207.616 0 1 0 553.7792 0 276.8896 207.616 0 1 0-553.7792 0Z" fill="#8C6CFA" p-id="31932"></path><path d="M220.0576 604.0064a261.7344 167.2192 0 1 0 523.4688 0 261.7344 167.2192 0 1 0-523.4688 0Z" fill="#805AF9" p-id="31933" data-spm-anchor-id="a313x.7781069.0.i50" class=""></path><path d="M296.192 512.768c-16.5888 0-30.0032-13.4144-30.0032-30.0032 0-118.8864 96.7168-215.6544 215.6544-215.6544 16.5888 0 30.0032 13.4144 30.0032 30.0032s-13.4144 30.0032-30.0032 30.0032c-85.8112 0-155.5968 69.7856-155.5968 155.5968a30.06464 30.06464 0 0 1-30.0544 30.0544z" fill="#FFFFFF" p-id="31934" data-spm-anchor-id="a313x.7781069.0.i51" class=""></path><path d="M778.1888 742.912l-75.1616-75.1616c6.2464-7.4752 12.1856-15.2576 17.664-23.3472-51.8656-76.4928-139.52-126.7712-238.8992-126.7712-99.3792 0-187.0336 50.2784-238.8992 126.7712 51.8656 76.4928 139.52 126.7712 238.8992 126.7712a287.1808 287.1808 0 0 0 161.8432-49.664l77.9776 77.9776a39.8848 39.8848 0 0 0 28.3136 11.7248c10.24 0 20.48-3.8912 28.3136-11.7248 15.616-15.616 15.616-40.96-0.0512-56.576z" fill="#764BF6" p-id="31935" data-spm-anchor-id="a313x.7781069.0.i49" class=""></path></svg>
+            
+        </div>
+        <div class="offset-5 col-3">
+<h1>津门海小棠</h1>
+            
+          
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-3 col-6">
+            <form class="form-inline" action="http://localhost:8080/search" novalidate="novalidate">
+                <div class="input-group w-100">
+                    <input required type="text" name="keyword" autocomplete="off" placeholder="发现世界，寻找自己" class="form-control" required="required">
+                    <span class="s"> / </span>
+                    <input required type="text" name="mask" autocomplete="off" placeholder="过滤词" class="form-control" style="width:20px;">
+                    <div class="input-group-append">
+                        <button id="submit" class="input-group-text btn btn-light bi bi-search" style="font-size: 1.2em">
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="fixed-bottom">
+        <p class="text-center" style="color: darkgrey">第三届字节跳动青训营-后端专场大项目题目二：搜索引擎</p>
+        <p class="text-center" style="color: darkgrey">© 沙哲一 © 庞德龙 © 刘焱宁 © 岑剑伟 © 黄邦锐</p>
+    </div>
+</div>
+</body>
+</html>

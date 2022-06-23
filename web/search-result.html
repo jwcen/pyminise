@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>津门海小棠搜索结果</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        /*去掉bootstrap自带的input输入框半透明阴影*/
+        .form-control:focus, .page-link:focus {
+            box-shadow: none;
+        }
+        /*去除下拉菜单按钮的箭头*/
+        .dropdown-toggle::after {
+            display: none;
+        }
+        .title {
+            /* color: #001ba0; */
+            font-size: larger;
+            width: 100%;
+        }
+        .title a:link {color:#001ba0;}
+        .title a:visited {color: #600090;}
+        .title a:hover {text-decoration: underline}
+        .title a:active {color: #062ade;}
+        .abstract {
+            color: #666;
+            margin-bottom: 0;
+            font-size: small;
+        }
+        .anonymous {
+            text-align: right;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .anonymous a {
+            color: black;
+            text-decoration: underline;
+        }
+        .anonymous a:active {
+            color: #999;
+        }
+        .page-link {
+            background-color: #F7F7F7;
+        }
+        #ti{
+
+        }
+        td,tr{
+            width: 100%;
+        }
+    </style>
+</head>
+<body style="background-color: #F7F7F7; min-width: 800px">
+<div class="container" style="max-width:100%">
+    <div class="row">
+        
+        <div class="offset-0 col-1 p-0" style="align-items: center;">
+            
+            <svg t="1654431552979" style="width: 60px;height:60px;margin: auto;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="31928" width="200" height="200"><path d="M512 515.1744m-436.2752 0a436.2752 436.2752 0 1 0 872.5504 0 436.2752 436.2752 0 1 0-872.5504 0Z" fill="#D7D4FF" p-id="31929" data-spm-anchor-id="a313x.7781069.0.i52" class=""></path><path d="M481.792 482.7648m-288.4096 0a288.4096 288.4096 0 1 0 576.8192 0 288.4096 288.4096 0 1 0-576.8192 0Z" fill="#AD9DFF" p-id="31930"></path><path d="M196.2496 523.1616a285.5424 248.0128 0 1 0 571.0848 0 285.5424 248.0128 0 1 0-571.0848 0Z" fill="#9F89FF" p-id="31931"></path><path d="M204.9024 563.6096a276.8896 207.616 0 1 0 553.7792 0 276.8896 207.616 0 1 0-553.7792 0Z" fill="#8C6CFA" p-id="31932"></path><path d="M220.0576 604.0064a261.7344 167.2192 0 1 0 523.4688 0 261.7344 167.2192 0 1 0-523.4688 0Z" fill="#805AF9" p-id="31933" data-spm-anchor-id="a313x.7781069.0.i50" class=""></path><path d="M296.192 512.768c-16.5888 0-30.0032-13.4144-30.0032-30.0032 0-118.8864 96.7168-215.6544 215.6544-215.6544 16.5888 0 30.0032 13.4144 30.0032 30.0032s-13.4144 30.0032-30.0032 30.0032c-85.8112 0-155.5968 69.7856-155.5968 155.5968a30.06464 30.06464 0 0 1-30.0544 30.0544z" fill="#FFFFFF" p-id="31934" data-spm-anchor-id="a313x.7781069.0.i51" class=""></path><path d="M778.1888 742.912l-75.1616-75.1616c6.2464-7.4752 12.1856-15.2576 17.664-23.3472-51.8656-76.4928-139.52-126.7712-238.8992-126.7712-99.3792 0-187.0336 50.2784-238.8992 126.7712 51.8656 76.4928 139.52 126.7712 238.8992 126.7712a287.1808 287.1808 0 0 0 161.8432-49.664l77.9776 77.9776a39.8848 39.8848 0 0 0 28.3136 11.7248c10.24 0 20.48-3.8912 28.3136-11.7248 15.616-15.616 15.616-40.96-0.0512-56.576z" fill="#764BF6" p-id="31935" data-spm-anchor-id="a313x.7781069.0.i49" class=""></path></svg>
+            
+        </div>
+        <div class="offset-0 col-8 align-self-center">
+            <form action="http://localhost:8080/search" class="form-inline" novalidate="novalidate">
+                <div class="input-group w-100">
+                    <input required type="text" name="keyword" autocomplete="off" placeholder="发现世界，寻找自己" class="form-control" value="{{keyword}}">
+                     <span> / </span>
+                    <input required type="text" name="mask" autocomplete="off" placeholder="过滤词" class="form-control" value="{{mask}}">
+                    <div class="input-group-append">
+                        <button class="input-group-text btn btn-light bi bi-search" style="font-size: 1.2em">
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-2">
+            <div class="dropdown text-right pt-2">
+                <button class="bi bi-list btn btn-light dropdown-toggle" data-toggle="dropdown" style="font-size: 1.5em"></button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">设为首页</a>
+                    <a class="dropdown-item" href="#">收录域名</a>
+                    <a class="dropdown-item" href="#">违法举报</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">分享</a>
+                    <a class="dropdown-item" href="#">服务条款</a>
+                    <a class="dropdown-item" href="#">关于我们</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+<div class="row" >
+    <div class="col-1">
+        <p >相关搜索推荐</p>
+        <table style="width: 100%;">
+        % if not related:
+    
+        <tr>
+        <td>
+            <br>
+            <br>
+            暂时没有相关搜索推荐...
+            <br>
+            <br>
+        </td>
+        </tr>
+        % end
+    
+       %for word in related:
+        <tr>
+        <td>
+            <div class="row">
+                <div class="offset-2">
+                    <a style="color: #771caa;" target="view_window" href="http://localhost:8080/search?keyword={{word[1]}}&mask=" style="width: 100%;">{{word[1]}}</a>
+                
+                </div>
+                    
+                    
+            </div>
+        </td>
+        </tr>
+       %end
+       </table>
+     
+    </div>
+    <div class="offset-0" style="width: 90%;">
+        <table class="table">
+    % if not page_list:
+
+    <tr>
+    <td>
+        <br>
+        <br>
+        暂时没有搜到相关内容...
+        <br>
+        <br>
+    </td>
+    </tr>
+    % end
+    <tr><td>About {{count}} result <nobr>({{time}} seconds)</nobr></td>
+    </tr>
+   %for page in page_list:
+    <tr>
+    <td>
+        <div class="row">
+            <div class="offset-0 col-12">
+                <h2 class="title">
+                    <p style="text-decoration: underline;"> 
+                        %if keyword in page[3]:
+                            {{page[3].split(keyword)[0]}}<font color="orange">{{keyword}}</font>{{page[3].split(keyword)[1]}}
+                        %else:
+                            {{page[3]}}
+                        %end
+                        </p>
+                    <a class="btn-light" target="view_window" href="{{page[2]}}" style="width: 100%;">点击此处查看图片
+                       
+                </a>
+                    </h2>
+
+            </div>
+        </div>
+    </td>
+    </tr>
+   %end
+   </table>
+   
+    </div>
+    <ul class="pagination">
+        % if status == 1:
+            <li class='' style="margin-right: 20px; color: black;"><a style="color: black;" href='http://localhost:8080/search?keyword={{keyword}}&p=1&mask={{mask}}'>首页</a></li>
+            <li class='' style="margin-right: 20px; color: black;"><a style="color: black;" href='http://localhost:8080/search?keyword={{keyword}}&p={{p-1}}&mask={{mask}}'>上一页</a></li>
+        % end 
+    
+        % for dic in dic_list:
+            % if dic==p:
+                <li class="active" style="margin-right: 20px;color: black;"><a style="color: black;" href="http://localhost:8080/search?keyword={{keyword}}&p={{dic}}&mask={{mask}}" rel="external nofollow" rel="external nofollow"></a></li>
+            % else:
+                <li style="margin-right: 20px;color: black;"><a style="color: black;" href="http://localhost:8080/search?keyword={{keyword}}&p={{dic}}&mask={{mask}}" rel="external nofollow" rel="external nofollow" ></a></li>
+            % end
+        % end
+    
+        %if p < total_pages:
+            <li class='' style="margin-right: 20px;color: black;"><a style="color: black;" href='http://localhost:8080/search?keyword={{keyword}}&p={{p+1}}&mask={{mask}}'>下一页</a></li>
+            <li class='' style="margin-right: 20px;color: black;"><a style="color: black;" href='http://localhost:8080/search?keyword={{keyword}}&p={{total_pages}}&mask={{mask}}'>尾页</a></li>
+        %end
+        共{{total_pages}}页
+    </ul>
+
+    
+</div>
+
+
+</div>
+
+</body>
+</html>
